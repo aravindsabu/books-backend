@@ -13,4 +13,7 @@ public interface BookDao extends CrudRepository<BookModel,Integer> {
     void deleteBookById(Integer id);
     @Query(value = "SELECT `id`, `bookdiscription`, `bookname`, `language`, `pages` FROM `books` WHERE bookname=:bookname",nativeQuery = true)
     List<BookModel>searchbook(String bookname);
+    @Modifying
+    @Query(value = "UPDATE `books` SET `bookdiscription`=:bookdiscription,`bookname`=:bookname,`language`=:language,`pages`=:pages WHERE `id`=:id",nativeQuery = true)
+    void editBook(String bookname,String bookdiscription,Integer pages,String language,Integer id );
 }

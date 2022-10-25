@@ -41,6 +41,13 @@ public class BookController {
         System.out.println(book.getBookname());
         return (List<BookModel>) dao.searchbook(book.getBookname());
     }
+    @CrossOrigin(origins = "*")
+    @Transactional
+    @PostMapping(value = "editBook",consumes = "application/json",produces = "application/json")
+    public String editBook(@RequestBody BookModel book){
+        dao.editBook(book.getBookname(),book.getBookdiscription(),book.getPages(),book.getLanguage(),book.getId());
+        return "(status:'success')";
+    }
 
 
 }
